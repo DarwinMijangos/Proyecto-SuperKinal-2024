@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.darwinmijangos.controller.MenuClientesController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.darwinmijangos.controller.MenuClientesController">
    <children>
-      <ImageView fitHeight="800.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="690.0" fitWidth="1281.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/FondoClientes.png" />
          </image>
       </ImageView>
-      <Label layoutX="333.0" layoutY="14.0" prefHeight="34.0" prefWidth="134.0" text="MENU CLIENTES">
-         <font>
-            <Font name="Arial Black" size="14.0" />
-         </font>
-      </Label>
+      <TableView fx:id="tblClentes" layoutX="109.0" layoutY="185.0" prefHeight="450.0" prefWidth="750.0">
+        <columns>
+          <TableColumn fx:id="colClienteID" minWidth="125.0" prefWidth="75.0" text="clienteID" />
+          <TableColumn fx:id="colNombre" minWidth="125.0" prefWidth="75.0" text="Nombre " />
+            <TableColumn fx:id="colApellido" minWidth="125.0" prefWidth="75.0" text="Apellido" />
+            <TableColumn fx:id="colTelefono" minWidth="125.0" prefWidth="75.0" text="Telefono" />
+            <TableColumn fx:id="colDireccion" minWidth="125.0" prefWidth="75.0" text="Direccion" />
+            <TableColumn fx:id="colNit" minWidth="125.0" prefWidth="75.0" text="Nit" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="934.0" layoutY="187.0" prefHeight="450.0" prefWidth="134.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Agregar" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Reportes" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Eliminar" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Editar" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Regresar" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <TextField layoutX="678.0" layoutY="123.0" prefHeight="31.0" prefWidth="245.0" promptText="Ingresa el ID de un cliente para buscarlo" />
+      <Button layoutX="923.0" layoutY="123.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" />
+      <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="927.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/lupa.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

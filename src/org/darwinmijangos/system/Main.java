@@ -63,7 +63,7 @@ public class Main extends Application {
     
     public void menuClientesView(){
     try{
-        MenuClientesController menuClientesView = (MenuClientesController)switchScene("MenuClientesView.fxml", 800, 800);
+        MenuClientesController menuClientesView = (MenuClientesController)switchScene("MenuClientesView.fxml", 1150, 690);
         menuClientesView.setStage(this);
     }catch(Exception e){
         System.out.println(e.getMessage());
