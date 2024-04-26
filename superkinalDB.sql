@@ -359,14 +359,7 @@ DELIMITER ;
 DELIMITER $$ 
 CREATE PROCEDURE sp_BuscarDistribuidores(IN disID INT)
 BEGIN
-	SELECT 	
-		Distribuidores.distribuidorID,
-		Distribuidores.nombreDistribuidor,
-		Distribuidores.direccionDistribuidor,
-		Distribuidores.nitDistribuidor,
-		Distribuidores.telefonoDistribuidor,
-		Distribuidores.web 
-			FROM Distribuidores
+	SELECT 	* FROM Distribuidores
 			WHERE distribuidorID = disID;
 END$$
 DELIMITER ;
@@ -534,7 +527,7 @@ delimiter $$
 	create procedure sp_AgregarEmpleados (in nomEmp varchar (30), in apeEmp  varchar (30), in suld decimal (10, 2), in horEnt time, in horSal time, in cargID int, in encID int)
 		begin 
 			insert into Empleados (nombreEmpleado , apellidoEmpleado, sueldo, horaEntrada, horaSalida, cargoID, encargadoID)
-				values (nomEmp, apeEmp, suld, horEnt, horSal, cargID, encaID);
+				values (nomEmp, apeEmp, suld, horEnt, horSal, cargID, encID);
 		end$$
 delimiter ;
 
@@ -557,155 +550,130 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_BuscarEmpleados (in empId int)
+	create procedure sp_BuscarEmpleados (in empID int)
 		begin 
-			select
-				Empleados.nombreEmpleado,
-                Empleados.apellidoEmpleado,
-                Empleados.sueldo,
-                Empleados.horaEntrada,
-                Empleados.horaSalida,
-                Empleados.cargoId,
-                Empleados.encargadoId
-					from Empleados 
-						where empleadoId = empId;
+			select * from Empleados 
+						where empleadoID = empID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EditarEmpleados (in empId int, in nomEmp varchar (30), in apeEmp  varchar (30), in sud decimal (10, 2), in horEntr time, in horSld time, in cargId int, in encaId int)
+	create procedure sp_EditarEmpleados (in empID int, in nomEmp varchar (30), in apeEmp  varchar (30), in suld decimal (10, 2), in horEnt time, in horSal time, in cargID int, in encaID int)
 		begin
 			update Empleados
 				set	
 					nombreEmpleado = nomEmp,
 					apellidoEmpleado = apeEmp,
-					sueldo = sud,
-					horaEntrada = horEntr, 
-					horaSalida = horSld,
-					cargoId = cargId,
-					encargadoId = encaId
-					where empleadoId = empId;
+					sueldo = suld,
+					horaEntrada = horEnt, 
+					horaSalida = horSal,
+					cargoID = cargID,
+					encargadoID = encaID
+					where empleadoID = empID;
 		end $$
 delimiter ;
 
 -- FACTURAS --
 
 delimiter $$
-	create procedure sp_AgregarFacturas (in fech date, in hor time, in tot decimal (10, 2), in cliId int, in empId int)
+	create procedure sp_AgregarFacturas (in fech date, in hor time, in tot decimal (10, 2), in cliID int, in empID int)
 		begin 
-			insert into Facturas (fecha, hora, total, clienteId, empleadoId)
-				values (fech, hor, tot, cliId, empId);
+			insert into Facturas (fecha, hora, total, clienteID, empleadoID)
+				values (fech, hor, tot, cliID, empID);
 		end$$
 delimiter ;
 
 delimiter $$
 	create procedure sp_ListarFacturas ()
 		begin 
-			select 
-				Facturas.facturaId,
-				Facturas.fecha,
-                Facturas.hora,
-                Facturas.total,
-                Facturas.clienteId,
-                Facturas.empleadoId
-					FROM Facturas;
+			select * FROM Facturas;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EliminarFacturas (in facId int)
+	create procedure sp_EliminarFacturas (in facID int)
 		begin
 			delete
 				from Facturas
-					where facturaId = facId;
+					where facturaID = facID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_BuscarFacturas (in facId int)
+	create procedure sp_BuscarFacturas (in facID int)
 		begin 
-			select
-				Facturas.fecha,
-                Facturas.hora,
-                Facturas.total,
-                Facturas.clienteId,
-                Facturas.empleadoId
-					from Facturas
-						where facturaId = facId;
+			select * from Facturas
+						where facturaID = facID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EditarFacturas (in facId int, in fech date, in hor time, in tot decimal (10, 2), in cliId int, in empId int)
+	create procedure sp_EditarFacturas (in facID int, in fech date, in hor time, in tot decimal (10, 2), in cliID int, in empID int)
 		begin
 			update Facturas
 				set	
 					fecha = fech,
 					hora = hor,
 					total = tot,
-					clienteId = cliId,
-					empleadoId = empId
-					where facturaId = facId;
+					clienteId = cliID,
+					empleadoId = empID
+					where facturaID = facID;
 		end $$
 delimiter ;
 
 -- DETALLE FACTURA --
 delimiter $$
-	create procedure sp_AgregarDetalleFactura  (in factId int, in proId int)
+	create procedure sp_AgregarDetalleFactura  (in factID int, in proID int)
 		begin 
-			insert into DetalleFactura  (facturaId, productoId)
-				values (factId, proId);
+			insert into DetalleFactura  (facturaID, productoID)
+				values (factID, proID);
 		end$$
 delimiter ;
 
 delimiter $$
 	create procedure sp_ListarDetalleFactura  ()
 		begin 
-			select 
-				DetalleFactura.detalleFacturaId,
-				DetalleFactura.facturaId,
-                DetalleFactura.productoId
-					FROM DetalleFactura;
+			select * FROM DetalleFactura;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EliminarDetalleFactura   (in detaFacId int)
+	create procedure sp_EliminarDetalleFactura   (in detFacID int)
 		begin
 			delete
 				from DetalleFactura  
-					where detalleFacturaId  = detaFacId;
+					where detalleFacturaID = detFacID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_BuscarDetalleFactura  (in detaFacId int)
+	create procedure sp_BuscarDetalleFactura  (in detFacID int)
 		begin 
 			select
-				DetalleFactura.facturaId,
-                DetalleFactura.productoId
+				DetalleFactura.facturaID,
+                DetalleFactura.productoID
 					from DetalleFactura 
-						where detalleFacturaId  = detaFacId;
+						where detalleFacturaID  = detFacID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EditarDetalleFactura  (in detaFacId int, in factId int, in proId int)
+	create procedure sp_EditarDetalleFactura  (in detFacID int, in factID int, in proID int)
 		begin
 			update DetalleFactura 
 				set	
-					facturaId = factId,
-					productoId = proId
-					where detalleFacturaId  = detaFacId;
+					facturaID = factID,
+					productoID = proID
+					where detalleFacturaID  = detFacID;
 		end $$
 delimiter ;
 
 -- TICKET SOPORTE --
 delimiter $$
-	create procedure sp_AgregarTicketSoporte (in descTick varchar (250), in est varchar (30), in cliId int, in facId int)
+	create procedure sp_AgregarTicketSoporte (in desTick varchar (250), in est varchar (30), in cliID int, in facID int)
 		begin 
-			insert into Facturas (descripcionTicket, estatuts , clienteId , facturaId)
-				values (descTick, "Recien creado", cliId, facId);
+			insert into Facturas (descripcionTicket, estatuts , clienteID , facturaID)
+				values (desTick, "Recien creado", cliID, facID);
 		end$$
 delimiter ;
 
@@ -720,37 +688,37 @@ delimiter $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EliminarTicketSoporte  (in tickSopId int)
+	create procedure sp_EliminarTicketSoporte  (in tickSopID int)
 		begin
 			delete
 				from TicketSoporte 
-					where ticketSoporteId = tickSopId;
+					where ticketSoporteID = tickSopID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_BuscarTicketSoporte (in tickSopId int)
+	create procedure sp_BuscarTicketSoporte (in tickSopID int)
 		begin 
 			select
 				TicketSoporte.descripcionTicket,
                 TicketSoporte.estatuts,
-                TicketSoporte.clienteId,
-                TicketSoporte.facturaId
+                TicketSoporte.clienteID,
+                TicketSoporte.facturaID
 					from TicketSoporte
-						where ticketSoporteId = tickSopId;
+						where ticketSoporteID = tickSopID;
 		end $$
 delimiter ;
 
 delimiter $$
-	create procedure sp_EditarTicketSoporte (in tickSopID int, in descTick varchar (250), in est varchar (30), in cliId int, in facId int)
+	create procedure sp_EditarTicketSoporte (in tickSopID int, in desTick varchar (250), in est varchar (30), in cliID int, in facID int)
 		begin
 			update TicketSoporte
 				set	
-					descripcionTicket = descTick,
+					descripcionTicket = desTick,
 					estatuts = est,
-					clienteId = cliId,
-					facturaId = facId
-					where ticketSoporteId = tickSopId;
+					clienteId = cliID,
+					facturaId = facID
+					where ticketSoporteID = tickSopID;
 		end $$
 delimiter ;
 
