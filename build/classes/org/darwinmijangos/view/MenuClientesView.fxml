@@ -18,14 +18,14 @@
             <Image url="@../image/FondoClientes.png" />
          </image>
       </ImageView>
-      <TableView layoutX="109.0" layoutY="185.0" prefHeight="450.0" prefWidth="750.0">
+      <TableView fx:id="tblClentes" layoutX="109.0" layoutY="185.0" prefHeight="450.0" prefWidth="750.0">
         <columns>
-          <TableColumn minWidth="125.0" prefWidth="75.0" text="ID" />
-          <TableColumn minWidth="125.0" prefWidth="75.0" text="Nombre " />
-            <TableColumn minWidth="125.0" prefWidth="75.0" text="Apellido" />
-            <TableColumn minWidth="125.0" prefWidth="75.0" text="Telefono" />
-            <TableColumn minWidth="125.0" prefWidth="75.0" text="Direccion" />
-            <TableColumn minWidth="125.0" prefWidth="75.0" text="Nit" />
+          <TableColumn fx:id="colClienteID" minWidth="125.0" prefWidth="75.0" text="clienteID" />
+          <TableColumn fx:id="colNombre" minWidth="125.0" prefWidth="75.0" text="Nombre " />
+            <TableColumn fx:id="colApellido" minWidth="125.0" prefWidth="75.0" text="Apellido" />
+            <TableColumn fx:id="colTelefono" minWidth="125.0" prefWidth="75.0" text="Telefono" />
+            <TableColumn fx:id="colDireccion" minWidth="125.0" prefWidth="75.0" text="Direccion" />
+            <TableColumn fx:id="colNit" minWidth="125.0" prefWidth="75.0" text="Nit" />
         </columns>
       </TableView>
       <GridPane layoutX="934.0" layoutY="187.0" prefHeight="450.0" prefWidth="134.0">
@@ -40,14 +40,19 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0" text="Agregar" />
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0" text="Reportes" GridPane.rowIndex="3" />
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0" text="Eliminar" GridPane.rowIndex="2" />
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0" text="Editar" GridPane.rowIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="104.0" text="Regresar" GridPane.rowIndex="4" />
+            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Agregar" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Reportes" GridPane.rowIndex="3" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Eliminar" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Editar" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" prefHeight="66.0" prefWidth="104.0" text="Regresar" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <TextField layoutX="708.0" layoutY="123.0" prefHeight="31.0" prefWidth="215.0" />
+      <TextField layoutX="678.0" layoutY="123.0" prefHeight="31.0" prefWidth="245.0" promptText="Ingresa el ID de un cliente para buscarlo" />
       <Button layoutX="923.0" layoutY="123.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="36.0" />
+      <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="927.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/lupa.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

@@ -15,6 +15,8 @@ DELIMITER $$
     END$$
 DELIMITER ;
 
+call sp_ListarClientes();
+
 DELIMITER $$
 	create procedure sp_EliminarCliente(in cliID int)
     BEGIN

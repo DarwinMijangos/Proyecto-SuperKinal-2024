@@ -1,4 +1,4 @@
- -- drop database if exists superkinalDB; --
+drop database if exists superkinalDB; 
 
 create database if not exists superkinalDB;
 
@@ -10,7 +10,7 @@ create table Clientes(
     apellido varchar (30) not null,
     telefono varchar (15),
     direccion varchar (150) not null,
-    nit varchar (15),
+    nit varchar (15) default "CF",
     primary key PK_clienteID (clienteID)
 );
 
@@ -54,7 +54,7 @@ create table Productos(
     precioVentaMyor decimal (10,2) not null,
     precioCompra decimal(10, 2) not null,
     imagenProducto blob not null,
-    distriuidorID int not null,
+    distribuidorID int not null,
     categoriaProductosID int not null,
     primary key PK_productoID (productoID),
     constraint FK_Productos_Distribuidores foreign key (distribuidorID)
@@ -76,20 +76,13 @@ create table Promociones (
 );
 
 create table DetalleCompra (
-	detalleCompra int not null auto_increment,
+	detalleCompraID int not null auto_increment,
     cantidadCompra int (250) not null,
     productoID int not null,
     compraID int not null,
     primary key PK_detalleCompraID (detalleCompraID),
     constraint FK_DetalleCompra_Productos foreign key (productoID)
 		references Productos (productoID)
-);
-
-create table Cargos (
-	cargoID int not null auto_increment,
-    nombreCargo varchar (30) not null,
-    descxripciopnCargo varchar (100),
-    primary key PK_cargoID (cargoID)
 );
 
 create table Empleados(
