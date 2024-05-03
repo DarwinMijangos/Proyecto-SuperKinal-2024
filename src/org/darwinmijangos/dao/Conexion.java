@@ -16,8 +16,8 @@ import java.sql.SQLException;
 public class Conexion {
     private static Conexion instance;
     private String url = "jdbc:mysql://localhost:3306/superkinalDB?serverTimezone=GMT-6&useSSL=false";
-    private String user = "darwin";
-    private String password = "darwin#2007";
+    private String user = "DarwinMijangos";
+    private String password = "guatemala";
     
     private Conexion(){
         try{

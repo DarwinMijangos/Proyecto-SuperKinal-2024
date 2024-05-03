@@ -14,8 +14,10 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -41,6 +43,9 @@ public class MenuClientesController implements Initializable {
     
     @FXML
     TableColumn colClienteID, colNombre, colApellido, colTelefono, colDireccion, colNit;
+    
+    @FXML
+    Button btnAgregar, btnEditar, btnReportes, btnRegresar;
 
     /**
      * Initializes the controller class.
@@ -48,6 +53,17 @@ public class MenuClientesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         cargarLista();
+    }
+    
+    @FXML
+    public void handleButtonAction(ActionEvent event ){
+        if(event.getSource() == btnAgregar){
+            stage.formClientesView();
+        }else if(event.getSource() == btnEditar){
+            stage.formClientesView();
+        }else if(event.getSource() == btnRegresar){
+            stage.menuPrincipalView();
+        }
     }
     
     public void cargarLista(){

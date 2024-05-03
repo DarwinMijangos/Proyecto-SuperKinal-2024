@@ -135,6 +135,9 @@ create table DetalleFactura (
 		references Productos (productoID)
 );
 
-insert into Clientes(nombre, apellido, telefono, direccion) values
-	("Elkyn","Samayoa","6666-6666","Peten"),
-    ("Jorge","Peralta","3333-3333","Quiche");
+insert into Clientes(nombre, apellido, telefono, direccion, nit) values
+	("Elkyn","Samayoa","1029-5607","Peten", "2360539-0"),
+    ("Jose","Ajcu","1237-3987","Capital", "CF"),
+    ("Darwin","Mijangos","3876-9273","Zacapa", "9283756-4"),
+    ("Cristian","Lima","5689-1264","Chiquimula", "CF"),
+    ("Jorge","Peralta","3456-1098","Quiche", "1208563-8");

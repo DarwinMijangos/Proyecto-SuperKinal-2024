@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import org.darwinmijangos.controller.FormClientesController;
 import org.darwinmijangos.controller.MenuClientesController;
 import org.darwinmijangos.controller.MenuPrincipalController;
  
@@ -62,13 +63,22 @@ public class Main extends Application {
     }
     
     public void menuClientesView(){
-    try{
-        MenuClientesController menuClientesView = (MenuClientesController)switchScene("MenuClientesView.fxml", 1150, 690);
-        menuClientesView.setStage(this);
-    }catch(Exception e){
-        System.out.println(e.getMessage());
+        try{
+            MenuClientesController menuClientesView = (MenuClientesController)switchScene("MenuClientesView.fxml", 1150, 690);
+            menuClientesView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
-}
+    
+    public void formClientesView(){
+        try{
+            FormClientesController formClienTesView = (FormClientesController)switchScene("FormClientesView.fxml", 500, 700);
+            formClienTesView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
     /**
      * @param args the command line arguments

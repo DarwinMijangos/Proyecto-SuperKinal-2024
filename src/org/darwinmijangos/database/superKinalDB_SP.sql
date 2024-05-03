@@ -394,7 +394,6 @@ delimiter $$
 			select * FROM Empleados;
 		end $$
 delimiter ;
-CALL sp_ListarEmpleados ();
 
 delimiter $$
 	create procedure sp_EliminarEmpleados (in empID int)

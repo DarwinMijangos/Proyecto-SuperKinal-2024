@@ -32,8 +32,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" text="Guardar" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="79.0" text="Cancelar" textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" prefHeight="52.0" prefWidth="79.0" text="Guardar" GridPane.columnIndex="1" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" prefHeight="52.0" prefWidth="79.0" text="Cancelar" textOverrun="WORD_ELLIPSIS" />
          </children>
       </GridPane>
    </children>
