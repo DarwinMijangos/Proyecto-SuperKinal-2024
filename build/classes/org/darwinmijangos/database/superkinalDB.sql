@@ -2,7 +2,7 @@ drop database if exists superkinalDB;
 
 create database if not exists superkinalDB;
 
-use superkinalDB;
+use superKinalDB;
 
 create table Clientes(
 	clienteID int not null auto_increment,
@@ -138,4 +138,3 @@ create table DetalleFactura (
 insert into Clientes(nombre, apellido, telefono, direccion) values
 	("Elkyn","Samayoa","6666-6666","Peten"),
     ("Jorge","Peralta","3333-3333","Quiche");
-

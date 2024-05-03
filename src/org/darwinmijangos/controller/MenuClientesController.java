@@ -12,11 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.darwinmijangos.dao.Conexion;
 import org.darwinmijangos.model.Cliente;
 import org.darwinmijangos.system.Main;
@@ -45,7 +47,18 @@ public class MenuClientesController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO
+        cargarLista();
+    }
+    
+    public void cargarLista(){
+        tblClientes.setItems(listarClientes());
+        colClienteID.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("clienteID"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("nombre"));
+        colApellido.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("apellido"));
+        colTelefono.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("telefono"));
+        colDireccion.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("direccion"));
+        colNit.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("nit"));
+
     }
     
     public ObservableList<Cliente> listarClientes(){
@@ -84,8 +97,10 @@ public class MenuClientesController implements Initializable {
                 System.out.println(e.getMessage());
             }
         }
+        
+        return FXCollections.observableList(clientes);
     }
-
+    
     public Main getStage() {
         return stage;
     }

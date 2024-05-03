@@ -1,4 +1,4 @@
-use superKinalDB;
+use superkinalDB;
 
 DELIMITER $$
 	create procedure sp_AgregarClientes(nom varchar (30), ape varchar (30), tel varchar (15), dir varchar (150))
@@ -578,4 +578,4 @@ delimiter $$
 		end $$
 delimiter ;
 
-set global time_zone = '-6:00';
+set global time_zone = '-6:00'; 
