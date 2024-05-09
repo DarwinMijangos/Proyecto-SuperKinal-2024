@@ -15,8 +15,6 @@ DELIMITER $$
     END$$
 DELIMITER ;
 
-call sp_ListarClientes();
-
 DELIMITER $$
 	create procedure sp_EliminarCliente(in cliID int)
     BEGIN
@@ -28,21 +26,19 @@ DELIMITER ;
 DELIMITER $$
 	create procedure sp_BuscarCliente(in cliID int)
     BEGIN
-		select Clientes.nombre, Clientes.apellido, Clientes.telefono, Clientes.direccion
+		select Clientes.clienteID, Clientes.nombre, Clientes.apellido, Clientes.telefono, Clientes.direccion, Clientes.nit
         from Clientes where clienteID = cliID;
     END$$
 DELIMITER ;
 
 DELIMITER $$
-	create procedure sp_EditarCliente(in cliID int, in nom varchar (30), in ape varchar (30), in tel varchar (15), in dir varchar (150))
+	create procedure sp_EditarCliente(in cliID int, in nom varchar (30), in ape varchar (30), in tel varchar (15), in dir varchar (150), nt varchar (15))
     BEGIN
 		update Clientes 
-        set nombre = nom, apellido = ape, telefono = tel, direccion = dir
+        set nombre = nom, apellido = ape, telefono = tel, direccion = dir, nit = nt
         where clienteID = cliID;
     END$$
 DELIMITER ;
-
--- Cargos 
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_AgregarCargos(IN nomCar VARCHAR (30), IN desCar VARCHAR (100))
@@ -54,7 +50,7 @@ DELIMITER ;
 
 DELIMITER $$ 
 CREATE PROCEDURE sp_ListarCargos()
-	Begin
+	BEGIN
 		select * from Cargos;
 	END$$
 DELIMITER ;

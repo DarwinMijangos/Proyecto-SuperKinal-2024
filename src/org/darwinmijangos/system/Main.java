@@ -71,10 +71,11 @@ public class Main extends Application {
         }
     }
     
-    public void formClientesView(){
+    public void formClientesView(int op){
         try{
-            FormClientesController formClienTesView = (FormClientesController)switchScene("FormClientesView.fxml", 500, 700);
-            formClienTesView.setStage(this);
+            FormClientesController formClientesView = (FormClientesController)switchScene("FormClientesView.fxml", 500, 700);
+            formClientesView.setOp(op);
+            formClientesView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
