@@ -1,10 +1,10 @@
 use superkinalDB;
 
 DELIMITER $$
-	create procedure sp_AgregarClientes(nom varchar (30), ape varchar (30), tel varchar (15), dir varchar (150))
+	create procedure sp_AgregarClientes(nom varchar (30), ape varchar (30), tel varchar (15), dir varchar (150), nt varchar (15))
     BEGIN
-		insert into Clientes(nombre, apellido, telefono, direccion) values
-			(nom, ape, tel, dir);
+		insert into Clientes(nombre, apellido, telefono, direccion, nit) values
+			(nom, ape, tel, dir, nt);
     END $$
 DELIMITER ;
 

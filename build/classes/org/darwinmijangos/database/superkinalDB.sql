@@ -10,7 +10,7 @@ create table Clientes(
     apellido varchar (30) not null,
     telefono varchar (15),
     direccion varchar (150) not null,
-    nit varchar (15) default "CF",
+    nit varchar (15) not null,
     primary key PK_clienteID (clienteID)
 );
 

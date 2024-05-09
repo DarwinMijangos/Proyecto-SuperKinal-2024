@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.darwinmijangos.controller.FormClientesController">
    <children>
       <ImageView fitHeight="700.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
@@ -22,7 +21,7 @@
       <TextField fx:id="tfTelefono" layoutX="60.0" layoutY="427.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #E88620;" />
       <TextField fx:id="tfApellido" layoutX="60.0" layoutY="343.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #E88620;" />
       <TextField fx:id="tfNombre" layoutX="60.0" layoutY="257.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #E88620;" />
-      <TextField fx:id="tfClienteID" layoutX="60.0" layoutY="175.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #E88620;" />
+      <TextField fx:id="tfClienteID" editable="false" layoutX="60.0" layoutY="175.0" prefHeight="26.0" prefWidth="278.0" style="-fx-background-color: #E88620;" />
       <GridPane alignment="TOP_CENTER" layoutX="221.0" layoutY="629.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="63.0" prefWidth="235.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -33,7 +32,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" text="Guardar" GridPane.columnIndex="1" />
-            <Button mnemonicParsing="false" prefHeight="52.0" prefWidth="79.0" text="Cancelar" textOverrun="WORD_ELLIPSIS" />
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="52.0" prefWidth="79.0" text="Cancelar" textOverrun="WORD_ELLIPSIS" />
          </children>
       </GridPane>
    </children>

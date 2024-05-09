@@ -6,12 +6,16 @@
 package org.darwinmijangos.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.darwinmijangos.dao.Conexion;
 import org.darwinmijangos.system.Main;
 
 /**
@@ -27,6 +31,9 @@ public class FormClientesController implements Initializable {
     @FXML
     Button btnGuardar, btnCancelar;
     
+    private static Connection conexion;
+    private static PreparedStatement statement;
+    
     /**
      * Initializes the controller class.
      */
@@ -35,15 +42,54 @@ public class FormClientesController implements Initializable {
         // TODO
     }
     
-    @FXMl
     public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnGuardar){
-            
-            
-        }else if(event.getSource() == btnCancelar){
+        if(event.getSource() == btnCancelar){
+            stage.menuClientesView();
+        }else if(event.getSource() == btnGuardar){
+            agregarCliente();
             stage.menuClientesView();
         }
     }
+    
+    public void agregarCliente(){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_AgregarClientes(?,?,?,?,?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setString(1, tfNombre.getText());
+            statement.setString(2, tfApellido.getText());
+            statement.setString(3, tfTelefono.getText());
+            statement.setString(4, tfDireccion.getText());
+            statement.setString(5, tfNit.getText());
+            statement.execute();
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            try{
+                if(statement != null){
+                    statement.close();
+                }
+                if(conexion != null){
+                    conexion.close();
+                }
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    
+     public void editarCliente(){
+        try{
+            conexion = Conexion.getInstance().obtenerConexion();
+            String sql = "call sp_EditarCliente(?,?,?,?,?,?)";
+            statement = conexion.prepareStatement(sql);
+            statement.setInt(g);
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }finally{
+            
+        }
+    } 
 
     public Main getStage() {
         return stage;
