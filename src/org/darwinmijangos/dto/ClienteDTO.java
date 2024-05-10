@@ -9,7 +9,7 @@ import org.darwinmijangos.model.Cliente;
 
 /**
  *
- * @author darwi
+ * @author darwin
  */
 public class ClienteDTO {
     private static ClienteDTO instance;
@@ -33,6 +33,4 @@ public class ClienteDTO {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    
-    
 }

@@ -14,7 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import org.darwinmijangos.controller.FormCargosController;
 import org.darwinmijangos.controller.FormClientesController;
+import org.darwinmijangos.controller.MenuCargosController;
 import org.darwinmijangos.controller.MenuClientesController;
 import org.darwinmijangos.controller.MenuPrincipalController;
  
@@ -76,6 +78,25 @@ public class Main extends Application {
             FormClientesController formClientesView = (FormClientesController)switchScene("FormClientesView.fxml", 500, 700);
             formClientesView.setOp(op);
             formClientesView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCargosView(){
+        try{
+            MenuCargosController menuCargosView = (MenuCargosController)switchScene("MenuCargosView.fxml", 1000, 600);
+            menuCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formCargosView(int op){
+        try{
+            FormCargosController formCargosView = (FormCargosController)switchScene("FormCargosView.fxml", 500, 600);
+            formCargosView.setOp(op);
+            formCargosView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
