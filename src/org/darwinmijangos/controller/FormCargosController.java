@@ -8,6 +8,7 @@ package org.darwinmijangos.controller;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,47 +17,51 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.darwinmijangos.dao.Conexion;
+import org.darwinmijangos.dto.CargoDTO;
 import org.darwinmijangos.dto.ClienteDTO;
-import org.darwinmijangos.model.Cliente;
+import org.darwinmijangos.model.Cargo;
 import org.darwinmijangos.system.Main;
 
 /**
  * FXML Controller class
  *
- * @author darwi
+ * @author informatica
  */
-public class FormClientesController implements Initializable {
+public class FormCargosController implements Initializable {
     private Main stage;
     private int op;
     
+    private static Connection conexion = null;
+    private static PreparedStatement statement = null;
+    private static ResultSet resultset = null;
+    
     @FXML
-    TextField tfClienteID, tfNombre, tfApellido, tfTelefono, tfDireccion, tfNit;
+    TextField tfCargoID, tfNombre, tfDescripcion;
+    
     @FXML
     Button btnGuardar, btnCancelar;
-    
-    private static Connection conexion;
-    private static PreparedStatement statement;
     
     /**
      * Initializes the controller class.
      */
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        if(ClienteDTO.getClienteDTO().getCliente() != null){
-            cargarDatos(ClienteDTO.getClienteDTO().getCliente());
+        if(CargoDTO.getCargoDTO().getCargo() != null){
+            
         }
     }
     
     public void handleButtonAction(ActionEvent event){
         if(event.getSource() == btnCancelar){
-            stage.menuClientesView();
-            ClienteDTO.getClienteDTO().setCliente(null);
+            stage.menuCargosView();
+            CargoDTO.getCargoDTO().setCargo(null);
         }else if(event.getSource() == btnGuardar){
             if(op == 1){
-                agregarCliente();
+                agregarCargo();
                 stage.menuClientesView();
             }else if(op == 2){
-                editarCliente();
+                editarCargo();
                 ClienteDTO.getClienteDTO().setCliente(null);
                 stage.menuClientesView();
             }
@@ -64,28 +69,23 @@ public class FormClientesController implements Initializable {
         }
     }
     
-    public void cargarDatos(Cliente cliente){
-        tfClienteID.setText(Integer.toString(cliente.getClienteID()));
-        tfNombre.setText(cliente.getNombre());
-        tfApellido.setText(cliente.getApellido());
-        tfTelefono.setText(cliente.getTelefono());
-        tfDireccion.setText(cliente.getDireccion());
-        tfNit.setText(cliente.getNit());
+    public void cargarDatos(Cargo cargo){
+        tfCargoID.setText(Integer.toString(cargo.getCargoID()));
+        tfNombre.setText(cargo.getNombre());
+        tfDescripcion.setText(cargo.getDescripcion());
     }
     
-    public void agregarCliente(){
+    public void agregarCargo(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_AgregarClientes(?,?,?,?,?)";
+            String sql = "call sp_AgregarCargos(?,?)";
             statement = conexion.prepareStatement(sql);
             statement.setString(1, tfNombre.getText());
-            statement.setString(2, tfApellido.getText());
-            statement.setString(3, tfTelefono.getText());
-            statement.setString(4, tfDireccion.getText());
-            statement.setString(5, tfNit.getText());
+            statement.setString(2, tfDescripcion.getText());
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
+            e.printStackTrace();
         }finally{
             try{
                 if(statement != null){
@@ -96,22 +96,17 @@ public class FormClientesController implements Initializable {
                 }
             }catch(SQLException e){
                 System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
     
-     public void editarCliente(){
+    public void editarCargo(){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EditarCliente(?,?,?,?,?,?)";
+            String sql = "call sp_EditarCargo(?,?,?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfClienteID.getText()));
-            statement.setString(2, tfNombre.getText());
-            statement.setString(3, tfApellido.getText());
-            statement.setString(4, tfTelefono.getText());
-            statement.setString(5, tfDireccion.getText());
-            statement.setString(6, tfNit.getText());
-            statement.execute();
+            statement.setInt(1, Integer.parseInt(tfCargoID.getText()));
         }catch(SQLException e){
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -120,14 +115,15 @@ public class FormClientesController implements Initializable {
                 if(statement != null){
                     statement.close();
                 }
-                if(conexion!= null){
+                if(conexion != null){
                     conexion.close();
                 }
             }catch(SQLException e){
                 System.out.println(e.getMessage());
+                e.printStackTrace();
             }
         }
-    } 
+    }
 
     public Main getStage() {
         return stage;
@@ -135,6 +131,10 @@ public class FormClientesController implements Initializable {
 
     public void setStage(Main stage) {
         this.stage = stage;
+    }
+    
+    public int getOp() {
+        return op;
     }
 
     public void setOp(int op) {

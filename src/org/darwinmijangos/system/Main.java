@@ -14,8 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import org.darwinmijangos.controller.FormCargosController;
 import org.darwinmijangos.controller.FormClientesController;
+import org.darwinmijangos.controller.MenuCargosController;
+import org.darwinmijangos.controller.MenuCategoriasController;
 import org.darwinmijangos.controller.MenuClientesController;
+import org.darwinmijangos.controller.MenuComprasController;
+import org.darwinmijangos.controller.MenuDistribuidoresController;
 import org.darwinmijangos.controller.MenuPrincipalController;
  
 /**
@@ -76,6 +81,52 @@ public class Main extends Application {
             FormClientesController formClientesView = (FormClientesController)switchScene("FormClientesView.fxml", 500, 700);
             formClientesView.setOp(op);
             formClientesView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCargosView(){
+        try{
+            MenuCargosController menuCargosView = (MenuCargosController)switchScene("MenuCargosView.fxml", 1000, 600);
+            menuCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void formCargosView(int op){
+        try{
+            FormCargosController formCargosView = (FormCargosController)switchScene("FormCargosView.fxml", 400, 600);
+            formCargosView.setOp(op);
+            formCargosView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuDistribuidoresView(){
+        try{
+            MenuDistribuidoresController menuDistribuidoresView = (MenuDistribuidoresController)switchScene("MenuDistribuidoresView.fxml", 1000, 600);
+            menuDistribuidoresView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuCategoriasView(){
+        try{
+            MenuCategoriasController menuCategoriasView = (MenuCategoriasController)switchScene("MenuCategoriasView.fxml", 1000, 600);
+            menuCategoriasView.setStage(this);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void menuComprasView(){
+        try{
+            MenuComprasController menuComprasView = (MenuComprasController)switchScene("MenuComprasView.fxml", 1000, 600);
+            menuComprasView.setStage(this);
         }catch(Exception e){
             System.out.println(e.getMessage());
         }

@@ -56,7 +56,7 @@ CREATE PROCEDURE sp_ListarCargos()
 DELIMITER ;
 
 DELIMITER $$ 
-CREATE PROCEDURE sp_EliminarCargos(IN carID INT)
+CREATE PROCEDURE sp_EliminarCargo(IN carID INT)
 BEGIN
 	DELETE
 	FROM Cargos 
@@ -65,7 +65,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$ 
-CREATE PROCEDURE sp_BuscarCargos(IN carID INT)
+CREATE PROCEDURE sp_BuscarCargo(IN carID INT)
 BEGIN
 	SELECT 	
 		Cargos.cargoID,
@@ -77,7 +77,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$ 
-CREATE PROCEDURE sp_EditarCargos(IN carIS INT,IN nomCar VARCHAR (30), IN desCar VARCHAR (100))
+CREATE PROCEDURE sp_EditarCargo(IN carID INT,IN nomCar VARCHAR (30), IN desCar VARCHAR (100))
 BEGIN
 	UPDATE Cargos
 		SET

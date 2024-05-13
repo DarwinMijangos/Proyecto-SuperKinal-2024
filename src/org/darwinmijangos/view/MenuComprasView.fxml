@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.darwinmijangos.controller.MenuComprasController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/MenuCompras.png" />
+         </image>
+      </ImageView>
+      <TableView layoutX="300.0" layoutY="186.0" prefHeight="400.0" prefWidth="450.0">
+        <columns>
+          <TableColumn prefWidth="150.0" text="C1" />
+          <TableColumn prefWidth="150.0" text="C2" />
+            <TableColumn prefWidth="150.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

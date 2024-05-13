@@ -141,3 +141,9 @@ insert into Clientes(nombre, apellido, telefono, direccion, nit) values
     ("Darwin","Mijangos","3876-9273","Zacapa", "9283756-4"),
     ("Cristian","Lima","5689-1264","Chiquimula", "CF"),
     ("Jorge","Peralta","3456-1098","Quiche", "1208563-8");
+    
+insert into Cargos(nombreCargo, descripcionCargo) values
+	("Contabilidad", "Se encarga de llevar la contabilidad de toda la empresa"),
+    ("Cajero", "El cajero se encarga de cobrar los productos en caja"),
+    ("Gerente de ventas", "Se encarga de aumentar las ventas mediante estrategias");
+    

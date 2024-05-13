@@ -6,28 +6,32 @@
 package org.darwinmijangos.controller;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
 import org.darwinmijangos.system.Main;
 
 /**
+ * FXML Controller class
  *
  * @author darwi
  */
-public class MenuPrincipalController implements Initializable{
-    
+public class MenuDistribuidoresController implements Initializable {
     private Main stage;
     
-    @FXML
-    MenuItem btnMenuClientes,btnCargos;
-   
+    private static Connection conexion = null;
+    private static PreparedStatement statement = null;
+    private static ResultSet resultset = null;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        
-    }
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO
+    }    
 
     public Main getStage() {
         return stage;
@@ -37,13 +41,5 @@ public class MenuPrincipalController implements Initializable{
         this.stage = stage;
     }
     
-    @FXML
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnMenuClientes){
-            stage.menuClientesView();
-        }else if(event.getSource() == btnCargos){
-            stage.menuCargosView();
-        }
-    }
     
 }

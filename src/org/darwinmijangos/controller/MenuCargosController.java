@@ -23,102 +23,91 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.darwinmijangos.dao.Conexion;
+import org.darwinmijangos.dto.CargoDTO;
 import org.darwinmijangos.dto.ClienteDTO;
+import org.darwinmijangos.model.Cargo;
 import org.darwinmijangos.model.Cliente;
 import org.darwinmijangos.system.Main;
 
 /**
  * FXML Controller class
  *
- * @author darwi
+ * @author informatica
  */
-public class MenuClientesController implements Initializable {
-    
+public class MenuCargosController implements Initializable {
     private Main stage;
     
+    private static ResultSet resultset = null;
     private static Connection conexion = null;
     private static PreparedStatement statement = null;
-    private static ResultSet resultset = null;
     
     @FXML
-    TableView tblClientes;
-    
-    @FXML
-    TableColumn colClienteID, colNombre, colApellido, colTelefono, colDireccion, colNit;
+    TableView tblCargos;
     
     @FXML
     Button btnAgregar, btnEditar, btnEliminar, btnReportes, btnRegresar, btnBuscar;
     
     @FXML
-    TextField tfClienteID;
-
+    TextField tfCargoID;
+    
+    @FXML
+    TableColumn colCargoID, colNombre, colDescripcion;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        cargarLista();
+        //cargarLista();
     }
     
     @FXML
     public void handleButtonAction(ActionEvent event ){
         if(event.getSource() == btnAgregar){
-            stage.formClientesView(1);
+            stage.formCargosView(1);
         }else if(event.getSource() == btnEditar){
-            ClienteDTO.getClienteDTO().setCliente((Cliente)tblClientes.getSelectionModel().getSelectedItem());
+            CargoDTO.getCargoDTO().setCargo((Cargo)tblCargos.getSelectionModel().getSelectedItem());
             stage.formClientesView(2);
         }else if(event.getSource() == btnRegresar){
             stage.menuPrincipalView();
         }else if(event.getSource() == btnEliminar){
-            int cliID = ((Cliente)tblClientes.getSelectionModel().getSelectedItem()).getClienteID();
-            eliminarCliente(cliID);
+            int carID = ((Cargo)tblCargos.getSelectionModel().getSelectedItem()).getCargoID();
+            eliminarCargo(carID);
             cargarLista();
         }else if(event.getSource() == btnBuscar){
-            tblClientes.getItems().clear();
-            if(tfClienteID.getText().equals("")){
+            tblCargos.getItems().clear();
+            if(tfCargoID.getText().equals("")){
                 cargarLista();
             }else{
-                tblClientes.getItems().add(buscarCliente());
-                colClienteID.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("clienteID"));
+                tblCargos.getItems().add(buscarCargo());
+                colCargoID.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("cargoID"));
                 colNombre.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("nombre"));
-                colApellido.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("apellido"));
-                colTelefono.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("telefono"));
-                colDireccion.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("direccion"));
-                colNit.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("nit"));
-                
+                colDescripcion.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("descripcion"));
             }
         }
     }
     
     public void cargarLista(){
-        tblClientes.setItems(listarClientes());
-        colClienteID.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("clienteID"));
+        tblCargos.setItems(listarCargos());
+        colCargoID.setCellValueFactory(new PropertyValueFactory<Cliente, Integer>("clienteID"));
         colNombre.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("nombre"));
-        colApellido.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("apellido"));
-        colTelefono.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("telefono"));
-        colDireccion.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("direccion"));
-        colNit.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("nit"));
-
+        colDescripcion.setCellValueFactory(new PropertyValueFactory<Cliente, String> ("descripcion"));
     }
     
-    public ObservableList<Cliente> listarClientes(){
-        ArrayList<Cliente> clientes = new ArrayList<>();
+    public ObservableList<Cargo> listarCargos(){
+        ArrayList<Cargo> cargos = new ArrayList<>();
         
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_ListarClientes";
+            String sql = "call sp_ListarCargos";
             statement = conexion.prepareStatement(sql);
             resultset = statement.executeQuery();
             
             while(resultset.next()){
-                int ClienteID = resultset.getInt("clienteID");
+                int cargoID = resultset.getInt("cargoID");
                 String nombre = resultset.getString("nombre");
-                String apellido = resultset.getString("apellido");
-                String telefono = resultset.getString("telefono");
-                String direccion = resultset.getString("direccion");
-                String nit = resultset.getString("nit");
+                String descripcion = resultset.getString("descripcion");
                 
-                clientes.add(new Cliente(ClienteID, nombre, apellido, telefono, direccion, nit));
+                cargos.add(new Cargo(cargoID, nombre, descripcion));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -138,15 +127,15 @@ public class MenuClientesController implements Initializable {
             }
         }
         
-        return FXCollections.observableList(clientes);
+        return FXCollections.observableList(cargos);
     }
     
-    public void eliminarCliente(int cliID){
+    public void eliminarCargo(int carID){
         try{
             conexion = Conexion.getInstance().obtenerConexion();
-            String sql = "call sp_EliminarCliente(?)";
+            String sql = "call sp_EliminarCargo(?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, cliID);
+            statement.setInt(1, carID);
             statement.execute();
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -164,24 +153,21 @@ public class MenuClientesController implements Initializable {
         }
     }
     
-    public Cliente buscarCliente(){
-        Cliente cliente = null;
+    public Cargo buscarCargo(){
+        Cargo cargo = null;
         try{
             conexion = Conexion.getInstance().obtenerConexion();
             String sql = "call sp_BuscarCliente(?)";
             statement = conexion.prepareStatement(sql);
-            statement.setInt(1, Integer.parseInt(tfClienteID.getText()));
+            statement.setInt(1, Integer.parseInt(tfCargoID.getText()));
             resultset = statement.executeQuery();
             
             if(resultset.next()){
-                int clienteID = resultset.getInt("clienteID");
+                int cargoID = resultset.getInt("cargoID");
                 String nombre = resultset.getString("nombre");
-                String apellido = resultset.getString("apellido");
-                String telefono = resultset.getString("telefono");
-                String direccion = resultset.getString("direccion");
-                String nit = resultset.getString("nit");
+                String descripcion = resultset.getString("descripcion");
                 
-                cliente = (new Cliente(clienteID, nombre, apellido, telefono, direccion, nit));
+                cargo = (new Cargo(cargoID, nombre, descripcion));
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
@@ -202,9 +188,9 @@ public class MenuClientesController implements Initializable {
             }
         }
         
-        return cliente;
+        return cargo;
     }
-    
+
     public Main getStage() {
         return stage;
     }
@@ -212,4 +198,6 @@ public class MenuClientesController implements Initializable {
     public void setStage(Main stage) {
         this.stage = stage;
     }
+    
+    
 }

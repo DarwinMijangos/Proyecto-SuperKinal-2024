@@ -7,27 +7,24 @@ package org.darwinmijangos.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.MenuItem;
 import org.darwinmijangos.system.Main;
 
 /**
+ * FXML Controller class
  *
  * @author darwi
  */
-public class MenuPrincipalController implements Initializable{
-    
+public class MenuComprasController implements Initializable {
     private Main stage;
-    
-    @FXML
-    MenuItem btnMenuClientes,btnCargos;
-   
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources){
-        
-    }
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO
+    }    
 
     public Main getStage() {
         return stage;
@@ -37,13 +34,5 @@ public class MenuPrincipalController implements Initializable{
         this.stage = stage;
     }
     
-    @FXML
-    public void handleButtonAction(ActionEvent event){
-        if(event.getSource() == btnMenuClientes){
-            stage.menuClientesView();
-        }else if(event.getSource() == btnCargos){
-            stage.menuCargosView();
-        }
-    }
     
 }
