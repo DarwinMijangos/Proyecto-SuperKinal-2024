@@ -107,8 +107,12 @@ create table Facturas (
     hora time not null,
     total decimal (10,2) not null,
     clienteID int not null,
-    empleado int not null,
-    primary key PK_facturaID (facturaID) 
+    empleadoID int not null,
+    primary key PK_facturaID (facturaID),
+    constraint FK_Facturas_Clientes foreign key (clienteID)
+		references Clientes (clienteID),
+	constraint FK_Facturas_Empleados foreign key (empleadoID)
+		references Empleados (empleadoID)
 );
 
 create table TicketSoporte (
