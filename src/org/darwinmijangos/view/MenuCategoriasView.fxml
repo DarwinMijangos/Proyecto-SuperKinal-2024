@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.darwinmijangos.controller.MenuCategoriasController">
    <children>
@@ -13,12 +18,33 @@
             <Image url="@../image/MenuCategorias.png" />
          </image>
       </ImageView>
-      <TableView layoutX="69.0" layoutY="157.0" prefHeight="400.0" prefWidth="600.0">
+      <TableView layoutX="136.0" layoutY="156.0" prefHeight="400.0" prefWidth="600.0">
         <columns>
           <TableColumn fx:id="colCategoriaID" prefWidth="200.0" text="CategoriaID" />
           <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
             <TableColumn fx:id="colDescripcion" prefWidth="200.0" text="Descripcion" />
         </columns>
       </TableView>
+      <GridPane layoutX="837.0" layoutY="164.0" prefHeight="344.0" prefWidth="101.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnAgregar" mnemonicParsing="false" prefHeight="55.0" prefWidth="79.0" text="Agregar" />
+            <Button fx:id="btnReportes" mnemonicParsing="false" prefHeight="55.0" prefWidth="79.0" text="Reportes" GridPane.rowIndex="3" />
+            <Button fx:id="btnEliminar" mnemonicParsing="false" prefHeight="55.0" prefWidth="79.0" text="Eliminar" GridPane.rowIndex="2" />
+            <Button fx:id="btnEditar" mnemonicParsing="false" prefHeight="55.0" prefWidth="79.0" text="Editar" GridPane.rowIndex="1" />
+            <Button fx:id="btnRegresar" mnemonicParsing="false" prefHeight="55.0" prefWidth="79.0" text="Regresar" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+      <Button fx:id="btnBuscar" layoutX="705.0" layoutY="116.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" text="Buscar" />
+      <TextField layoutX="456.0" layoutY="116.0" prefHeight="25.0" prefWidth="249.0" promptText="Ingrese el ID de una categoria para buscarla" />
    </children>
 </AnchorPane>

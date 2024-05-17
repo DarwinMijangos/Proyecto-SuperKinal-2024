@@ -39,7 +39,7 @@ create table Distribuidores(
 );
 
 create table CategoriaProductos(
-	categoriaProductosID int not null auto_increment,
+	categoriaProductoID int not null auto_increment,
     nombreCategoria varchar (30) not null,
     descripcionCategoria varchar (100) not null,
     primary key PK_categoriaProductosID (categoriaProductosID)

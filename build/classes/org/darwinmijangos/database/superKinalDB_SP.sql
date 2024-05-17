@@ -89,10 +89,10 @@ DELIMITER ;
 
 -- Compras 
 DELIMITER $$ 
-CREATE PROCEDURE sp_AgregarCompras(IN fech date, IN tot  decimal (10.2))
+CREATE PROCEDURE sp_AgregarCompras(IN fech date)
 BEGIN 	
-	INSERT INTO Compras (fechaCompra,totalCompra )VALUES 
-		(fech, tot);
+	INSERT INTO Compras (fechaCompra)VALUES 
+		(date(now()));
 END$$
 DELIMITER ;
 
@@ -573,4 +573,19 @@ delimiter $$
 		end $$
 delimiter ;
 
-set global time_zone = '-6:00'; 
+set global time_zone = '-6:00';
+
+DELIMITER $$
+	create procedure sp_AgregarUsuario(us varchar (30), cont varchar (100), nivacID int, empID int)
+		begin
+			insert into Usuarios(usuario, contrasenia, nivelAccesoID, empleadoID) values
+				(us, cont, nivacID, empID);
+        end$$
+DELIMITER ;
+
+DELIMITER $$
+	create procedure dp_BuscarUsuario (us varchar (30))
+    begin
+		select * from Usuarios where usuarioID = us;
+    end$$
+DELIMITER ;

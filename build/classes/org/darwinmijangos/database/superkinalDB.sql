@@ -39,7 +39,7 @@ create table Distribuidores(
 );
 
 create table CategoriaProductos(
-	categoriaProductosID int not null auto_increment,
+	categoriaProductoID int not null auto_increment,
     nombreCategoria varchar (30) not null,
     descripcionCategoria varchar (100) not null,
     primary key PK_categoriaProductosID (categoriaProductosID)
@@ -139,6 +139,26 @@ create table DetalleFactura (
 		references Productos (productoID)
 );
 
+create table NivelesAcceso(
+	nivelAccesoID int not null auto_increment,
+    nivelAcceso varchar (40) not null,
+    primary key PK_nivelAccesoID (nivelAccesoID)
+);
+
+create table Usuarios(
+	usuarioID int not null auto_increment,
+    usuario varchar (30) not null,
+    contrasenia varchar (100) not null,
+    nivelAccesoID int not null,
+    empleadoID int not null,
+    constraint FK_Usuarios_NivelesAcceso foreign key (nivelAccesoID)
+		references NivelesAcceso (nivelAccesoID),
+	constraint FK_Usuarios_Empleados foreign key (empleadoID)
+		references Empleados (empleadoID)
+);
+
+
+
 insert into Clientes(nombre, apellido, telefono, direccion, nit) values
 	("Elkyn","Samayoa","1029-5607","Peten", "2360539-0"),
     ("Jose","Ajcu","1237-3987","Capital", "CF"),
@@ -151,3 +171,6 @@ insert into Cargos(nombreCargo, descripcionCargo) values
     ("Cajero", "El cajero se encarga de cobrar los productos en caja"),
     ("Gerente de ventas", "Se encarga de aumentar las ventas mediante estrategias");
     
+insert into NivelesAcceso(nivelAcceso) values
+	("Admininstrador"),
+    ("Usuario");
