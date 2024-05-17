@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="org.darwinmijangos.controller.MenuCategoriasController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.darwinmijangos.controller.MenuCategoriasController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/MenuCategorias.png" />
          </image>
       </ImageView>
+      <TableView layoutX="69.0" layoutY="157.0" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="colCategoriaID" prefWidth="200.0" text="CategoriaID" />
+          <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+            <TableColumn fx:id="colDescripcion" prefWidth="200.0" text="Descripcion" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

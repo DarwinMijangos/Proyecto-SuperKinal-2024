@@ -89,10 +89,10 @@ DELIMITER ;
 
 -- Compras 
 DELIMITER $$ 
-CREATE PROCEDURE sp_AgregarCompras(IN fech date, IN tot  decimal (10.2))
+CREATE PROCEDURE sp_AgregarCompras(IN fech date)
 BEGIN 	
-	INSERT INTO Compras (fechaCompra,totalCompra )VALUES 
-		(fech, tot);
+	INSERT INTO Compras (fechaCompra)VALUES 
+		(date(now()));
 END$$
 DELIMITER ;
 
